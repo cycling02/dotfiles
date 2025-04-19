@@ -1,0 +1,24 @@
+{
+    "id" : "lock",
+    "label" : "锁定屏幕",
+    "action" : "hyprlock",
+    "keybind" : "l"
+}
+{
+    "id" : "reboot",
+    "label" : "重启",
+    "action" : "systemctl reboot || loginctl reboot",
+    "keybind" : "r"
+}
+{
+    "id" : "logout",
+    "label" : "注销",
+    "action" : "pkill Hyprland || pkill sway || pkill niri || loginctl terminate-user $USER",
+    "keybind" : "e"
+}
+{
+    "id" : "shutdown",
+    "label" : "关机",
+    "action" : "systemctl poweroff || loginctl poweroff",
+    "keybind" : "s"
+}
