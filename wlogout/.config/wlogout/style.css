@@ -7,7 +7,7 @@
 }
 
 window {
-    background-color: rgba(30, 30, 46, 0.9);  /* Mocha Mantle */
+    background-color: rgba(24, 24, 37, 0.9);  /* Mocha Mantle */
 }
 
 button {
@@ -23,13 +23,13 @@ button {
 
 button:hover {
     background-color: rgba(69, 71, 90, 0.9);  /* Mocha Surface1 */
-    border: 2px solid rgba(137, 180, 250, 0.9);  /* Mocha Blue */
+    border: 2px solid rgba(180, 190, 254, 0.9);  /* Mocha Lavender */
 }
 
 button:focus {
-    background-color: rgba(89, 91, 110, 0.9);  /* Mocha Surface2 */
-    border: 2px solid rgba(245, 194, 231, 0.9);  /* Mocha Pink */
-    box-shadow: 0 0 12px rgba(245, 194, 231, 0.5);  /* Mocha Pink glow */
+    background-color: rgba(88, 91, 112, 0.9);  /* Mocha Surface2 */
+    border: 2px solid rgba(203, 166, 247, 0.9);  /* Mocha Mauve */
+    box-shadow: 0 0 12px rgba(203, 166, 247, 0.5);  /* Mocha Mauve glow */
 }
 
 #lock {
@@ -49,5 +49,15 @@ button:focus {
 
 #shutdown {
     background-image: url("/home/cyling/.config/wlogout/power.png");
+    margin: 10px;
+}
+
+#sleep {
+    background-image: url("/home/cyling/.config/wlogout/sleep.png");
+    margin: 10px;
+}
+
+#hibernate {
+    background-image: url("/home/cyling/.config/wlogout/pause.png");
     margin: 10px;
 }
