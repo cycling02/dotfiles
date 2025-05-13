@@ -1,117 +1,223 @@
 {
-    "position": "top",
-    "modules-left": ["custom/launcher", "hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["tray","network", "cpu", "memory", "temperature", "pulseaudio", "battery", "clock", "custom/keyboard-layout", "custom/pacman"],
-    "clock": {
-      "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "calendar": {
-        "mode": "month",
-        "mode-mon-col": 3,
-        "weeks-pos": "right",
-        "on-scroll": 1,
-        "on-click-right": "mode",
-        "format": {
-          "months": "<span color='#ffead3'><b>{}</b></span>",
-          "days": "<span color='#ecc6d9'><b>{}</b></span>",
-          "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-          "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-          "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-        }
-      },
-      "custom/launcher": {
-        "format": " ",
-        "on-click": "rofi -show drun",
-        "tooltip": false
-      }
-    },
-
-    "tray": {
-      "format": "<span foreground='#f5c2e7'>  </span>{icon} {name}",
-      "format-icons": {
-        "default": ["", "", ""]
-      },
-      "tooltip-format": "<big>{name}</big>\n<tt><small>{description}</small></tt>"
-    },
-    "battery": {
-      "states": {
-        "warning": 30,
-        "critical": 15
-      },
-      "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
-      "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
-      "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
-      "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-      "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-      "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
-      "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-      "format-icons": ["", "", "", "", ""],
-      "tooltip-format": "{time}"
-    },
-    "network": {
-      "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
-      "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
-      "format-linked": "{ifname} (No IP) ",
-      "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-      "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
-      "on-click": "~/.config/waybar/scripts/networkmenu.sh"
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "",
-        "format-icons": {
-            "default": ["", "", " "]
-        },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
-        "on-scroll-up": "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-        "max-volume": 100
-    },
-    "custom/launcher": {
-      "format": " ",
-      "on-click": "rofi -show drun",
-      "tooltip": false
-    },
-    "cpu": {
-      "format": "﬙ {usage: >3}%",
-      "tooltip": false,
-      "interval": 2
-    },
-    "memory": {
-      "format": " {percentage: >3}%",
-      "tooltip": false,
-      "interval": 2
-    },
-    "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-        "critical-threshold": 80,
-        "format": " {temperatureC}°C",
-        "format-critical": " {temperatureC}°C",
-        "interval": 5
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "custom/keyboard-layout": {
-        "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-        "interval": 1,
-        "format": "  {}",
-        "signal": 1,
-        "tooltip": false,
-        "on-click": "~/.config/waybar/scripts/keyhint.sh"
-    },
-    "custom/pacman": {
-        "format": " {}",
-        "interval": 7200,
-        "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",
-        "exec-if": "exit 0",
-        "on-click": "kitty -e sudo pacman -Syu",
-        "signal": 8
-    }
+	"layer": "top",
+	"position": "top",
+	"height": 36,
+	"spacing": 1,
+	"modules-left": [
+		"custom/nixlogo",
+		"hyprland/workspaces",
+		"hyprland/window",
+		"custom/spotify"
+	],
+	"modules-center": [
+		"clock",
+		"custom/notification",
+		"idle_inhibitor"
+	],
+	"modules-right": [
+		"custom/pacman",
+		"cava",
+		"group/hardware",
+		"custom/nvidia",
+		"group/audio",
+		"group/network",
+		"group/power",
+		"tray"
+	],
+	"group/hardware": {
+		"orientation": "horizontal",
+		"modules": [
+			"cpu",
+			"memory",
+			"temperature"
+		]
+	},
+	"group/audio": {
+		"orientation": "horizontal",
+		"modules": [
+			"pulseaudio",
+			"bluetooth"
+		]
+	},
+	"group/network": {
+		"orientation": "horizontal",
+		"modules": [
+			"network",
+			"custom/vpn"
+		]
+	},
+	"group/power": {
+		"orientation": "horizontal",
+		"modules": [
+			"battery",
+			"custom/lock",
+			"custom/logout"
+		]
+	},
+	"bluetooth": {
+		"format": " {status}",
+		"format-disabled": "",
+		"format-connected": " {num_connections}",
+		"tooltip-format": "{controller_alias}\t{controller_address}\nDevices:\n{device_enumerate}"
+	},
+	"custom/nixlogo": {
+		"format": "󱄅",
+		"on-click": "rofi -show drun",
+		"tooltip": false
+	},
+	"hyprland/workspaces": {
+		"format": "{name}",
+		"format-icons": {
+			"active": "󰮯",
+			"default": "󰊠",
+			"empty": "󰑊"
+		},
+		"on-scroll-up": "hyprctl dispatch workspace e+1",
+		"on-scroll-down": "hyprctl dispatch workspace e-1",
+		"persistent-workspaces": {
+			"1": "󰊠",
+			"2": "󰊠",
+			"3": "󰊠",
+			"4": "󰊠",
+			"5": "󰊠",
+			"6": "󰊠"
+		}
+	},
+	"clock": {
+		"format": "󰥔 {:%H:%M}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>\nWeek {:%V}"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "󰍛 {usage}%",
+		"tooltip-format": "CPU: {usage}%\nTemp: {temperature}°C\nFreq: {frequency} GHz",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	"memory": {
+		"interval": 5,
+		"format": "󰾆 {used:0.1f}G/{total:0.1f}G",
+		"tooltip-format": "Memory: {used:0.1f}G/{total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G/{swapTotal:0.1f}G",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+	"network": {
+		"format-wifi": "󰤨 {essid} ({signalStrength}%)",
+		"format-ethernet": "󰈀 {ifname}",
+		"format-disconnected": "󰤮 Disconnected",
+		"tooltip-format": "{ifname}\nIP: {ipaddr}\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}"
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰝟 Muted",
+		"format-icons": [
+			"󰕿",
+			"󰖀",
+			"󰕾"
+		],
+		"tooltip-format": "{desc}\nVolume: {volume}%\nSink: {sink_name}"
+	},
+	"battery": {
+		"format": "{icon} {capacity}%",
+		"format-charging": "󰂄 {capacity}%",
+		"format-full": "󰁹 {capacity}%",
+		"format-icons": [
+			"󰂎",
+			"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹"
+		],
+		"tooltip-format": "Battery: {capacity}%\nStatus: {status}\nTime remaining: {time}"
+	},
+	"temperature": {
+		"interval": 5,
+		"format": " {temperatureC}°C",
+		"critical-threshold": 80,
+		"tooltip-format": "Temperature: {temperatureC}°C\nCritical: {critical}"
+	},
+	"custom/notification": {
+		"format": "{icon}",
+		"format-icons": {
+			"notification": "󰂚",
+			"none": "󰂜",
+			"dnd-notification": "󰂛",
+			"dnd-none": "󰪑"
+		},
+		"tooltip-format": "Notifications: {count}"
+	},
+	"custom/lock": {
+		"format": "󰌾",
+		"on-click": "hyprlock",
+		"tooltip": false
+	},
+	"custom/logout": {
+		"format": "󰍃",
+		"on-click": "wlogout",
+		"tooltip": false
+	},
+	"custom/vpn": {
+		"format": "󰦝 VPN",
+		"interval": 5,
+		"tooltip-format": "VPN Status: {status}"
+	},
+	"custom/spotify": {
+		"format": "{icon} {text}",
+		"format-icons": {
+			"Playing": "󰎈",
+			"Paused": "󰏤"
+		},
+		"max-length": 40,
+		"tooltip-format": "{artist} - {title}\nAlbum: {album}\n{status}",
+		"on-click": "playerctl play-pause",
+		"on-click-right": "playerctl next"
+	},
+	"cava": {
+		"bars": 10,
+		"format-icons": [
+			"▁",
+			"▂",
+			"▃",
+			"▄",
+			"▅",
+			"▆",
+			"▇",
+			"█"
+		]
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "󰥔",
+			"deactivated": ""
+		},
+		"tooltip-format": "Idle: {status}"
+	},
+	"tray": {
+		"icon-size": 18,
+		"spacing": 10
+	},
+	"custom/nvidia": {
+		"exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,nounits,noheader | sed 's/\\([0-9]\\+\\), \\([0-9]\\+\\)/\\1% 🌡️\\2°C/g'",
+		"format": "{}",
+		"interval": 10
+	},
+	"custom/pacman": {
+		"format": "{}  ",
+		"interval": 360000, // 100 hour
+		"exec": "checkupdates | wc -l", // # of updates
+		"exec-if": "exit 0", // always run; consider advanced run conditions
+		"on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+		"signal": 8
+	}
 }

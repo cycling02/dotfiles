@@ -33,31 +33,31 @@ button:focus {
 }
 
 #lock {
-    background-image: url("/home/cyling/.config/wlogout/lock.png");
+    background-image: url("/home/cycling/.config/wlogout/lock.png");
     margin: 10px;
 }
 
 #logout {
-    background-image: url("/home/cyling/.config/wlogout/logout.png");
+    background-image: url("/home/cycling/.config/wlogout/logout.png");
     margin: 10px;
 }
 
 #reboot {
-    background-image: url("/home/cyling/.config/wlogout/restart.png");
+    background-image: url("/home/cycling/.config/wlogout/restart.png");
     margin: 10px;
 }
 
 #shutdown {
-    background-image: url("/home/cyling/.config/wlogout/power.png");
+    background-image: url("/home/cycling/.config/wlogout/power.png");
     margin: 10px;
 }
 
 #sleep {
-    background-image: url("/home/cyling/.config/wlogout/sleep.png");
+    background-image: url("/home/cycling/.config/wlogout/sleep.png");
     margin: 10px;
 }
 
 #hibernate {
-    background-image: url("/home/cyling/.config/wlogout/pause.png");
+    background-image: url("/home/cycling/.config/wlogout/pause.png");
     margin: 10px;
 }

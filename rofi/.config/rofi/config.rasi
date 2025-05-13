@@ -1,17 +1,25 @@
-
-@theme "/home/cyling/.config/rofi/theme.rasi"
-configuration{
-    modi: "run,drun,window";
-    icon-theme: "Oranchelo";
+configuration {
+    modi: "drun,window,run,ssh";
     show-icons: true;
-    terminal: "alacritty";
-    drun-display-format: "{icon} {name}";
-    location: 0;
-    disable-history: false;
-    hide-scrollbar: true;
-    display-drun: "   Apps ";
-    display-run: "   Run ";
-    display-window: " 﩯  Window";
-    display-Network: " 󰤨  Network";
-    sidebar-mode: true;
+    font: "JetBrainsMono 12";
+    icon-theme: "Gruvbox-Plus-Dark";
+
+    display-ssh:    "󰣀 ssh:";
+    display-run:    "󱓞 run:";
+    display-drun:   "󰣖 drun:";
+    display-window: "󱂬 window:";
+    display-combi:  "󰕘 combi:";
+    display-filebrowser: "󰉋 filebrowser:";
+
+    dpi: 110;
+    lines: 10;          // 总行数
+    columns: 2;        // 列数
+    fixed-columns: true; // 固定列数
+    width: 50%;        // 窗口宽度
+    padding: 20;       // 内边距
+    location: 0;       // 0=居中, 1=顶部, 2=底部
+    
 }
+
+
+@theme "~/.config/rofi/theme.rasi"
